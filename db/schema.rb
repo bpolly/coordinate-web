@@ -10,26 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170302172439) do
+ActiveRecord::Schema.define(version: 20170308172407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "chats", force: :cascade do |t|
-    t.integer  "user_id"
     t.point    "location"
     t.float    "distance_limit"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.index ["user_id"], name: "index_chats_on_user_id", using: :btree
-  end
-
-  create_table "devices", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "mac_address"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["user_id"], name: "index_devices_on_user_id", using: :btree
+    t.index ["user_id"], name: "index_chats_on_user_id", using: :btree
   end
 
   create_table "messages", force: :cascade do |t|
@@ -41,11 +33,11 @@ ActiveRecord::Schema.define(version: 20170302172439) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "mac_address"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_foreign_key "chats", "users"
-  add_foreign_key "devices", "users"
   add_foreign_key "messages", "chats"
 end
