@@ -18,6 +18,6 @@ class ChatsController < ApplicationController
   private
 
   def lookup_user
-    @user = User.find_by(mac_address: params[:mac_address])
+    @user = User.find_or_create_by(mac_address: params[:mac_address])
   end
 end
