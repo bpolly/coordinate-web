@@ -3,6 +3,11 @@ class MessagesController < ApplicationController
   before_action :lookup_user
   before_action :lookup_chat
 
+  def index
+    @messages = Message.all
+    render :json => @messages
+  end
+
   def create
     @message = @chat.messages.new
     @message.content = params[:content]
@@ -12,6 +17,11 @@ class MessagesController < ApplicationController
     else
       head 500
     end
+  end
+
+  def show
+    @message = Message.find(params[:id])
+    render :json => @message
   end
 
   private

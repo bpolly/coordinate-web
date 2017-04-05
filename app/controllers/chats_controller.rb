@@ -2,6 +2,11 @@ class ChatsController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :lookup_user
 
+  def index
+    @chats = Chat.all
+    render :json => @chats.to_json( :include => [:messages] )
+  end
+
   def create
     @chat = Chat.new
     @chat.user = @user
@@ -14,6 +19,11 @@ class ChatsController < ApplicationController
     else
       head 500
     end
+  end
+
+  def show
+    @chat = Chat.find(params[:id])
+    render :json => @chat.to_json( :include => [:messages] )
   end
 
   private
