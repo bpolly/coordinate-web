@@ -3,6 +3,17 @@ class MessagesController < ApplicationController
   before_action :lookup_user
   before_action :lookup_chat
 
+  def create
+    @message = @chat.messages.new
+    @message.content = params[:content]
+    @message.user = @user
+    if @chat.save
+      render :json => @chat.to_json( :include => [:messages] )
+    else
+      head 500
+    end
+  end
+
   private
 
   def lookup_user
