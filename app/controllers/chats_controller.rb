@@ -2,8 +2,9 @@ class ChatsController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :lookup_user
 
-  def index
+  def get_chats
     @chats = Chat.all
+    @chats = Chat.near(@user.location, 1)
     render :json => @chats.to_json( :include => [:messages] )
   end
 
