@@ -5,6 +5,10 @@ class User < ApplicationRecord
 
   before_create :generate_username
 
+  def location
+    [latitude, longitude]
+  end
+
   private
   def generate_username
     num = rand(6)
