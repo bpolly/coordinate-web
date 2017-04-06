@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
   private
   def generate_username
-    num = rand(4)
+    num = rand(6)
 
     case num
     when 0
