@@ -9,6 +9,8 @@ class MessagesController < ApplicationController
   end
 
   def create
+    return head(:forbidden) unless (@user.distance_from(@chat) <= 1)
+
     @message = @chat.messages.new
     @message.content = params[:content]
     @message.user = @user
