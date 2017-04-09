@@ -5,7 +5,7 @@ class MessagesController < ApplicationController
 
   def index
     @messages = Message.all
-    render :json => @messages
+    # render :json => @messages
   end
 
   def create
@@ -23,7 +23,7 @@ class MessagesController < ApplicationController
 
   def show
     @message = Message.find(params[:id])
-    render :json => @message
+    # render :json => @message
   end
 
   private

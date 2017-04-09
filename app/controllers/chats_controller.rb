@@ -2,15 +2,15 @@ class ChatsController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :lookup_user
 
-  def get_chats
+  def index
     @chats = Chat.all
-    @chats = Chat.near(@user.location, 1)
-    render :json => @chats.to_json( :include => [:messages] )
+    # render :json => @chats.to_json( :include => [:messages] )
   end
 
   def create
     @chat = Chat.new
     @chat.user = @user
+    @chat.name = params[:name]
     @chat.distance_limit = params[:distance_limit] || 10 #default
     @chat.latitude = params[:latitude]
     @chat.longitude = params[:longitude]
@@ -24,7 +24,7 @@ class ChatsController < ApplicationController
 
   def show
     @chat = Chat.find(params[:id])
-    render :json => @chat.to_json( :include => [:messages] )
+    #render :json => @chat.to_json( :include => [:messages] )
   end
 
   private
