@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   post '/get_chats', to: 'chats#get_chats'
   post '/users/update_location', to: 'users#update_location'
 
-  resources :chats
-  resources :messages
-  resources :users
+  resources :chats, :defaults => { :format => 'json' }
+  resources :messages, :defaults => { :format => 'json' }
+  resources :users, :defaults => { :format => 'json' }
 end
