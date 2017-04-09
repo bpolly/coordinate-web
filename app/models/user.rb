@@ -15,7 +15,7 @@ class User < ApplicationRecord
 
     case num
     when 0
-      self.username = Faker::HeyArnold.character
+      self.username = Faker::StarWars.character
     when 1
       self.username = Faker::GameOfThrones.character
     when 2
