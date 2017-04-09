@@ -1,11 +1,10 @@
 class MessagesController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :lookup_user
+  before_action :lookup_user, :except => [:index, :show]
   before_action :lookup_chat
 
   def index
     @messages = Message.all
-    # render :json => @messages
   end
 
   def create
@@ -23,7 +22,6 @@ class MessagesController < ApplicationController
 
   def show
     @message = Message.find(params[:id])
-    # render :json => @message
   end
 
   private

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :lookup_user
+  before_action :lookup_user, :except => [:index]
 
   def index
     @users = User.all
