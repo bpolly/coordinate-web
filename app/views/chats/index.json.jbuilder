@@ -1,6 +1,6 @@
 json.chats @chats do |chat|
   json.id chat.id
-  # json.name chat.name #CHATS CURRENTLY DO NOT HAVE NAME?
+  json.name chat.name
   json.creator chat.user.username
   if chat.messages.last
     json.last_message do
