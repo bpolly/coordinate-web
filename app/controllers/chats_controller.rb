@@ -6,6 +6,12 @@ class ChatsController < ApplicationController
     @chats = Chat.all
   end
 
+  def get_chats
+    @chats = Chat.all
+    @chats = Chat.near(@user.location, 1)
+    render :json => @chats.to_json( :include => [:messages] )
+  end
+
   def create
     @chat = Chat.new
     @chat.user = @user
